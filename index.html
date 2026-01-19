@@ -485,8 +485,8 @@
             #perfResultsContent > div > div > *:last-child,
             #a11yResultsContent > div > div > *:last-child,
             #funcResultsContent > div > div > *:last-child {
-                font-weight: bold;
-                font-size: 1.1rem;
+                font-weight: normal;
+                font-size: 0.95rem;
             }
         }
     
@@ -496,8 +496,8 @@
             #perfResultsContent > div > div > *:last-child,
             #a11yResultsContent > div > div > *:last-child,
             #funcResultsContent > div > div > *:last-child {
-                font-weight: bold !important;
-                font-size: 1.1rem !important;
+                font-weight: normal !important;
+                font-size: 0.95rem !important;
             }
         
         footer {
@@ -512,11 +512,8 @@
             margin: 0.5rem 0 !important;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
         }
-        }
     
-        
-    
-        /* FORCE STACK PERFORMANCE METRICS ON MOBILE */
+    /* FORCE STACK PERFORMANCE METRICS ON MOBILE */
         @media (max-width: 768px) {
             #perfResultsContent > div > div,
             #a11yResultsContent > div > div,
@@ -557,9 +554,9 @@
             #webVitals > div > *:last-child,
             #imageMetrics > div > *:last-child,
             #networkMetrics > div > *:last-child {
-                font-weight: bold !important;
-                font-size: 1.2rem !important;
-                color: #8b6f47 !important;
+                font-weight: normal !important;
+                font-size: 0.95rem !important;
+                color: #666 !important;
                 width: 100% !important;
                 display: block !important;
             }
@@ -709,7 +706,7 @@
             </p>
             <div style="background: #f0f7ff; border-left: 4px solid #3b82f6; padding: 1rem; border-radius: 5px; margin-bottom: 2rem;">
                 <div style="color: #1e40af; font-size: 0.95rem; line-height: 1.6;">
-                    <strong>?? Note:</strong> These interactive tests are simplified demonstrations built for portfolio purposes. In professional software testing, I would use tools like Selenium, Playwright, JMeter, K6, Postman, Swagger, and dedicated accessibility scanners (axe DevTools, WAVE) to conduct thorough testing across multiple environments, devices, and scenarios. The demos below illustrate testing concepts but represent a fraction of real-world QA processes.
+                    <strong>Note:</strong> These interactive tests are simplified demonstrations built for portfolio purposes. In professional software testing, I would use tools like Selenium, Playwright, JMeter, K6, Postman, Swagger, and dedicated accessibility scanners (axe DevTools, WAVE) to conduct thorough testing across multiple environments, devices, and scenarios. The demos below illustrate testing concepts but represent a fraction of real-world QA processes.
                 </div>
             </div>
             <div class="demo-list">
@@ -723,7 +720,7 @@
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
                                 <h4 style="color: #333; font-size: 1.1rem; margin: 0;">Performance Test Results</h4>
                                 <button onclick="toggleResults('performanceResults')" style="background: #8b6f47; color: white; border: none; padding: 0.4rem 1rem; border-radius: 4px; cursor: pointer; font-size: 0.9rem; transition: background 0.2s; flex-shrink: 0;">
-                                    <span id="perfToggleText">? Collapse</span>
+                                    <span id="perfToggleText">Collapse</span>
                                 </button>
                             </div>
                             <div id="perfResultsContent" class="results-content">
@@ -754,11 +751,11 @@
                             
                             <!-- DevTools Instructions -->
                             <div style="margin-bottom: 1.5rem; padding: 1rem; background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 5px;">
-                                <h5 style="color: #92400e; margin-bottom: 0.5rem; font-size: 0.95rem;">?? Want to see the full Chrome DevTools Performance Tab?</h5>
+                                <h5 style="color: #92400e; margin-bottom: 0.5rem; font-size: 0.95rem;">Want to see the full Chrome DevTools Performance Tab?</h5>
                                 <div style="font-size: 0.9rem; color: #78350f; line-height: 1.6;">
                                     <strong>Open Chrome DevTools:</strong> Press F12 (or Cmd+Option+I on Mac)<br>
                                     <strong>Navigate to:</strong> Performance tab<br>
-                                    <strong>Click:</strong> Record button (?) and reload the page<br>
+                                    <strong>Click:</strong> Record button and reload the page<br>
                                     <strong>Analyze:</strong> Detailed flame charts, network waterfall, and frame-by-frame rendering
                                 </div>
                             </div>
@@ -804,7 +801,7 @@
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
                                 <h4 style="color: #333; font-size: 1.1rem; margin: 0;">Functional Test Results</h4>
                                 <button onclick="toggleResults('functionalResults')" style="background: #8b6f47; color: white; border: none; padding: 0.4rem 1rem; border-radius: 4px; cursor: pointer; font-size: 0.9rem; transition: background 0.2s; flex-shrink: 0;">
-                                    <span id="funcToggleText">? Collapse</span>
+                                    <span id="funcToggleText">Collapse</span>
                                 </button>
                             </div>
                             <div id="funcResultsContent" class="results-content">
@@ -838,7 +835,7 @@
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
                                 <h4 style="color: #333; font-size: 1.1rem; margin: 0;">Accessibility Test Results</h4>
                                 <button onclick="toggleResults('accessibilityResults')" style="background: #8b6f47; color: white; border: none; padding: 0.4rem 1rem; border-radius: 4px; cursor: pointer; font-size: 0.9rem; transition: background 0.2s; flex-shrink: 0;">
-                                    <span id="a11yToggleText">? Collapse</span>
+                                    <span id="a11yToggleText">Collapse</span>
                                 </button>
                             </div>
                             <div id="a11yResultsContent" class="results-content">
@@ -934,10 +931,10 @@
             
             if (content.classList.contains('collapsed')) {
                 content.classList.remove('collapsed');
-                toggleText.textContent = '? Collapse';
+                toggleText.textContent = 'Collapse';
             } else {
                 content.classList.add('collapsed');
-                toggleText.textContent = '? Expand';
+                toggleText.textContent = 'Expand';
             }
         }
 
@@ -948,7 +945,7 @@
             
             if (content && toggleText) {
                 content.classList.remove('collapsed');
-                toggleText.textContent = '? Collapse';
+                toggleText.textContent = 'Collapse';
             }
         }
 
@@ -1017,16 +1014,13 @@
                         info: '#6b7280'
                     };
                     const color = colors[status] || colors.info;
-                    const statusText = status === 'good' ? '?' : status === 'warning' ? '?' : status === 'poor' ? '?' : '�';
-                    
                     const isMobile = window.innerWidth <= 768;
-                    
                     if (isMobile) {
                         // Mobile: Stacked layout
                         return `
                             <div style="padding: 0.75rem; margin-bottom: 0.5rem; background: white; border-radius: 5px; border-left: 3px solid ${color};">
                                 <div style="color: #666; font-size: 0.85rem; margin-bottom: 0.25rem;">${label}</div>
-                                <div style="color: ${color}; font-weight: 700; font-size: 1.1rem;">${statusText} ${value}${unit}</div>
+                                <div style="color: ${color}; font-weight: 700; font-size: 1.1rem;">${value}${unit}</div>
                             </div>
                         `;
                     } else {
@@ -1034,7 +1028,7 @@
                         return `
                             <div style="display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid #e5e7eb;">
                                 <span style="color: #666;">${label}:</span>
-                                <span style="color: ${color}; font-weight: 600;">${statusText} ${value}${unit}</span>
+                                <span style="color: ${color}; font-weight: 600;">${value}${unit}</span>
                             </div>
                         `;
                     }
@@ -1101,7 +1095,7 @@
                                     <span style="color: #666; font-size: 0.9rem;">DNS + TCP Connection</span><span style="color: #8b6f47; font-weight: 700; font-size: 1.2rem;">${dnsAndTcpDuration.toFixed(0)}ms</span>
                                 </div>
                                 <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 0.25rem; padding: 0.75rem; margin-bottom: 0.5rem; background: white; border-radius: 5px; border-left: 3px solid #8b5cf6; width: 100%; box-sizing: border-box;">
-                                    <span style="color: #666; font-size: 0.9rem;">Request/Response</span><span style="color: #8b6f47; font-weight: 700; font-size: 1.2rem;">${requestDuration.toFixed(0)}ms</span>
+                                    <span style="color: #666; font-size: 0.9rem; white-space: nowrap;">Request/Response</span><span style="color: #8b6f47; font-weight: 700; font-size: 1.2rem;">${requestDuration.toFixed(0)}ms</span>
                                 </div>
                                 <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 0.25rem; padding: 0.75rem; margin-bottom: 0.5rem; background: white; border-radius: 5px; border-left: 3px solid #10b981; width: 100%; box-sizing: border-box;">
                                     <span style="color: #666; font-size: 0.9rem;">DOM Processing</span><span style="color: #8b6f47; font-weight: 700; font-size: 1.2rem;">${domDuration.toFixed(0)}ms</span>
@@ -1194,7 +1188,7 @@
                     recommendations.push('<em>Page performance is optimized</em>');
                 }
                 const recommendationsHtml = recommendations.map(rec => 
-                    `<div style="padding: 0.4rem 0; color: #666;">${rec}</div>`
+                    `<div style="padding: 0.4rem 0; color: #666; font-weight: normal;">${rec}</div>`
                 ).join('');
                 document.getElementById('recommendations').innerHTML = recommendationsHtml;
                 
@@ -1230,11 +1224,8 @@
                 
                 // Helper function to create issue/pass display
                 function createItem(text, type) {
-                    const color = type === 'pass' ? '#22c55e' : type === 'warning' ? '#f59e0b' : '#ef4444';
-                    const icon = type === 'pass' ? '?' : type === 'warning' ? '?' : '?';
-                    return `<div style="display: flex; gap: 0.5rem; padding: 0.4rem 0; border-bottom: 1px solid #e5e7eb;">
-                        <span style="color: ${color}; font-weight: bold; min-width: 20px;">${icon}</span>
-                        <span style="color: #666; flex: 1;">${text}</span>
+                    return `<div style="display: flex; gap: 0.5rem; padding: 0.4rem 0; border-bottom: 1px solid #e5e7eb; font-weight: normal;">
+                        <span style="color: #666; flex: 1;">• ${text}</span>
                     </div>`;
                 }
                 
@@ -1445,29 +1436,24 @@
                 
                 // Recommendations
                 const recommendations = [];
-                
                 if (imagesWithoutAlt > 0) {
-                    recommendations.push('?? Critical: Add alt text to all images for screen reader compatibility (WCAG 1.1.1)');
+                    recommendations.push('• Critical: Add alt text to all images for screen reader compatibility (WCAG 1.1.1)');
                 }
-                
                 if (score >= 90) {
-                    recommendations.push('? Excellent accessibility! Site meets most WCAG 2.1 Level AA standards');
-                    recommendations.push('?? Consider conducting manual testing with actual screen readers (NVDA, JAWS)');
+                    recommendations.push('• Excellent accessibility! Site meets most WCAG 2.1 Level AA standards');
+                    recommendations.push('• Consider conducting manual testing with actual screen readers (NVDA, JAWS)');
                 } else if (score >= 70) {
-                    recommendations.push('? Good accessibility foundation with some areas for improvement');
-                    recommendations.push('?? Address the issues above to reach WCAG 2.1 Level AA compliance');
+                    recommendations.push('• Good accessibility foundation with some areas for improvement');
+                    recommendations.push('• Address the issues above to reach WCAG 2.1 Level AA compliance');
                 } else {
-                    recommendations.push('?? Several accessibility issues detected that need attention');
-                    recommendations.push('?? Prioritize fixing critical issues first (alt text, keyboard nav)');
+                    recommendations.push('• Several accessibility issues detected that need attention');
+                    recommendations.push('• Prioritize fixing critical issues first (alt text, keyboard nav)');
                 }
-                
-                recommendations.push('?? Test with keyboard only (Tab, Enter, Space, Arrow keys)');
-                recommendations.push('?? Verify color contrast with tools like WebAIM Contrast Checker');
-                
+                recommendations.push('• Test with keyboard only (Tab, Enter, Space, Arrow keys)');
+                recommendations.push('• Verify color contrast with tools like WebAIM Contrast Checker');
                 const recommendationsHtml = recommendations.map(rec => 
-                    `<div style="padding: 0.5rem 0; color: #666; line-height: 1.6;">${rec}</div>`
+                    `<div style="padding: 0.5rem 0; color: #666; line-height: 1.6; font-weight: normal;">${rec}</div>`
                 ).join('');
-                
                 document.getElementById('a11yRecommendations').innerHTML = recommendationsHtml;
                 
                 // Re-enable button
