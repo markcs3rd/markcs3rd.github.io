@@ -982,13 +982,15 @@
                 const images = document.querySelectorAll('img');
                 const imageCount = images.length;
                 let totalImageSize = 0;
-                
-                // Estimate image sizes (base64 encoded images)
+                // Estimate image sizes
                 images.forEach(img => {
                     if (img.src.startsWith('data:image')) {
                         // Rough estimate: base64 is ~33% larger than original
                         const base64Length = img.src.length;
                         totalImageSize += (base64Length * 0.75) / 1024 / 1024; // Convert to MB
+                    } else if (img.naturalWidth && img.naturalHeight) {
+                        // Estimate file-based image size using resolution (assume JPEG/PNG ~0.5 bytes/pixel)
+                        totalImageSize += (img.naturalWidth * img.naturalHeight * 0.5) / 1024 / 1024;
                     }
                 });
                 
@@ -1146,14 +1148,43 @@
                 document.getElementById('webVitals').innerHTML = webVitalsHtml;
                 
                 // Image Analysis
-                const avgImageSize = imageCount > 0 ? (totalImageSize / imageCount).toFixed(2) : 0;
-                const imageMetricsHtml = 
-                    createMetric('Total Images', imageCount, '', 'info') +
-                    createMetric('Estimated Total Size', totalImageSize.toFixed(2), ' MB', totalImageSize < 5 ? 'good' : totalImageSize < 10 ? 'warning' : 'poor') +
-                    createMetric('Average Image Size', avgImageSize, ' MB', avgImageSize < 0.5 ? 'good' : avgImageSize < 1 ? 'warning' : 'poor') +
-                    createMetric('Images Loaded', imageCount, '', 'info');
-                
-                document.getElementById('imageMetrics').innerHTML = imageMetricsHtml;
+                // New: Fetch actual image file sizes via HTTP HEAD requests
+                async function getActualImageSizes() {
+                    let actualTotalSize = 0;
+                    let actualSizes = [];
+                    let loadedCount = 0;
+                    for (const img of images) {
+                        if (img.src.startsWith('data:image')) {
+                            // Estimate base64 size as before
+                            const base64Length = img.src.length;
+                            const sizeMB = (base64Length * 0.75) / 1024 / 1024;
+                            actualTotalSize += sizeMB;
+                            actualSizes.push(sizeMB);
+                            loadedCount++;
+                        } else {
+                            try {
+                                const response = await fetch(img.src, { method: 'HEAD' });
+                                const size = response.headers.get('Content-Length');
+                                if (size) {
+                                    const sizeMB = parseInt(size, 10) / 1024 / 1024;
+                                    actualTotalSize += sizeMB;
+                                    actualSizes.push(sizeMB);
+                                    loadedCount++;
+                                }
+                            } catch (e) {
+                                // If HEAD fails, skip
+                            }
+                        }
+                    }
+                    const avgImageSize = loadedCount > 0 ? (actualTotalSize / loadedCount).toFixed(2) : 0;
+                    const imageMetricsHtml = 
+                        createMetric('Total Images', imageCount, '', 'info') +
+                        createMetric('Actual Total Size', actualTotalSize.toFixed(2), ' MB', actualTotalSize < 5 ? 'good' : actualTotalSize < 10 ? 'warning' : 'poor') +
+                        createMetric('Average Image Size', avgImageSize, ' MB', avgImageSize < 0.5 ? 'good' : avgImageSize < 1 ? 'warning' : 'poor') +
+                        createMetric('Images Loaded', loadedCount, '', 'info');
+                    document.getElementById('imageMetrics').innerHTML = imageMetricsHtml;
+                }
+                getActualImageSizes();
                 
                 // Network Analysis
                 const networkMetricsHtml = 
