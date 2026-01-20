@@ -1183,6 +1183,39 @@
                         createMetric('Average Image Size', avgImageSize, ' MB', avgImageSize < 0.5 ? 'good' : avgImageSize < 1 ? 'warning' : 'poor') +
                         createMetric('Images Loaded', loadedCount, '', 'info');
                     document.getElementById('imageMetrics').innerHTML = imageMetricsHtml;
+
+                    // Recommendations logic (now uses actual sizes)
+                    const recommendations = [];
+                    let showDisclaimer = false;
+                    if (actualTotalSize > 5) {
+                        recommendations.push('• Consider optimizing images - total size exceeds 5MB');
+                        showDisclaimer = true;
+                    }
+                    if (avgImageSize > 1) {
+                        recommendations.push('• Average image size is large - consider compression or WebP format');
+                        showDisclaimer = true;
+                    }
+                    if (pageLoadTime > 3000) {
+                        recommendations.push('• Page load time exceeds 3 seconds - consider optimization');
+                    }
+                    if (resourceCount > 50) {
+                        recommendations.push('• High number of HTTP requests - consider bundling resources');
+                    }
+                    if (fcp > 2500) {
+                        recommendations.push('• First Contentful Paint is slow - optimize critical rendering path');
+                    }
+                    if (recommendations.length === 0) {
+                        recommendations.push('• All metrics are within acceptable ranges - great job!');
+                        recommendations.push('<em>Page performance is optimized</em>');
+                    }
+                    // Add disclaimer about cropping only if size is a concern
+                    if (showDisclaimer) {
+                        recommendations.push('<span style="color: #b91c1c; font-size: 0.95rem;">Disclaimer: If image sizes seem high, it may be due to Mark’s stubbornness not to crop his photos.</span>');
+                    }
+                    const recommendationsHtml = recommendations.map(rec => 
+                        `<div style="padding: 0.4rem 0; color: #666; font-weight: normal;">${rec}</div>`
+                    ).join('');
+                    document.getElementById('recommendations').innerHTML = recommendationsHtml;
                 }
                 getActualImageSizes();
                 
