@@ -296,11 +296,13 @@
         }
 
         /* Responsive */
+        /* Hide mobile-only content on larger screens; show via media query below */
+        .mobile-only { display: none; }
         @media (max-width: 768px) {
             .desktop-only {
                 display: none !important;
             }
-            
+
             .mobile-only {
                 display: inline !important;
             }
@@ -631,7 +633,8 @@
                 word-break: break-word !important;
                 font-size: 0.95rem !important;
             }
-            .desktop-only { display: flex !important; flex-wrap: wrap !important; gap: 0.5rem !important; }
+            /* Keep desktop-only content hidden on very small screens; only normalize child sizing if present */
+            .desktop-only { display: none !important; }
             .desktop-only > div { min-width: 0 !important; }
         }
     </style>
@@ -736,7 +739,8 @@
                                 <h5 style="color: #8b6f47; margin-bottom: 0.5rem;">Performance Timeline Visualization</h5>
                                 <div id="perfTimeline" style="background: white; padding: 1rem; border-radius: 5px; overflow-x: auto;">
                                     <div style="font-size: 0.9rem; color: #666; margin-bottom: 0.75rem; line-height: 1.5;">
-                                        This timeline shows the sequential stages of page loading. <strong>DNS/TCP</strong> is the network connection setup, <strong>Request/Response</strong> is fetching the HTML, <strong>DOM Processing</strong> is parsing and building the page structure, and <strong>Rendering</strong> is painting content to the screen. Shorter bars indicate faster performance.
+                                        <span class="desktop-only">This timeline visually represents sequential page-load phases as horizontal bars: <strong>DNS/TCP</strong> (network setup), <strong>Request/Response</strong> (fetching resources), <strong>DOM Processing</strong> (parsing and building the DOM), and <strong>Rendering</strong> (painting to the screen). Shorter bars indicate faster performance.</span>
+                                        <span class="mobile-only">Durations are shown numerically: <strong>DNS/TCP</strong> (network setup), <strong>Request/Response</strong> (fetching), <strong>DOM Processing</strong> (parsing), and <strong>Rendering</strong> (painting). Lower values indicate faster performance.</span>
                                     </div>
                                     <div style="font-size: 0.85rem; color: #666; margin-bottom: 0.5rem;"><span class="desktop-only">Timeline (milliseconds from page start)</span><span class="mobile-only" style="display: none;">Duration of each loading phase</span></div>
                                     <div id="timelineChart" style="min-width: 700px; padding-right: 60px;"></div>
